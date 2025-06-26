@@ -41,6 +41,14 @@ export abstract class BaseApi {
     return localStorage.getItem('accessToken')
   }
 
+  protected static clearAccessToken() {
+    localStorage.removeItem('accessToken')
+  }
+
+  protected static setAccessToken(accessToken: string) {
+    localStorage.setItem('accessToken', accessToken)
+  }
+
   protected static async request<T>(method: 'get' | 'post' | 'put' | 'delete' | 'patch', url: string, data?: object) {
     try {
       const response = await (method === 'get' ? this.apiClient.get<T>(url) : this.apiClient[method]<T>(url, data))
