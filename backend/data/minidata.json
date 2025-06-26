@@ -1,0 +1,93 @@
+[
+    {
+      "id": 221499,
+      "name": "Susan Wilson",
+      "email": "susan.wilson@example.com",
+      "dob": "2001-11-20T00:00:00Z",
+      "gpa": 3.99
+    },
+    {
+      "id": 221897,
+      "name": "Marilyn Spencer",
+      "email": "marilyn.spencer@example.com",
+      "dob": "2001-03-09T00:00:00Z",
+      "gpa": 3.97
+    },
+    {
+      "id": 221465,
+      "name": "Cheryl Henry",
+      "email": "cheryl.henry@example.com",
+      "dob": "2001-03-29T00:00:00Z",
+      "gpa": 3.96
+    },
+    {
+      "id": 221411,
+      "name": "Ashley King",
+      "email": "ashley.king@example.com",
+      "dob": "2001-09-24T00:00:00Z",
+      "gpa": 3.95
+    },
+    {
+      "id": 221964,
+      "name": "Kathryn Bowman",
+      "email": "kathryn.bowman@example.com",
+      "dob": "2001-03-19T00:00:00Z",
+      "gpa": 3.95
+    },
+    {
+      "id": 221956,
+      "name": "Frances Watkins",
+      "email": "frances.watkins@example.com",
+      "dob": "2001-03-12T00:00:00Z",
+      "gpa": 3.94
+    },
+    {
+      "id": 221988,
+      "name": "Joyce Perry",
+      "email": "joyce.perry@example.com",
+      "dob": "2001-03-17T00:00:00Z",
+      "gpa": 3.93
+    },
+    {
+      "id": 221856,
+      "name": "Doris Shaw",
+      "email": "doris.shaw@example.com",
+      "dob": "2001-03-02T00:00:00Z",
+      "gpa": 3.92
+    },
+    {
+      "id": 221945,
+      "name": "Jennifer Garcia",
+      "email": "jennifer.garcia@example.com",
+      "dob": "2002-09-03T00:00:00Z",
+      "gpa": 3.92
+    },
+    {
+      "id": 221811,
+      "name": "Sharon Morris",
+      "email": "sharon.morris@example.com",
+      "dob": "2001-03-06T00:00:00Z",
+      "gpa": 3.91
+    },
+    {
+      "id": 221490,
+      "name": "Jacqueline Ellis",
+      "email": "jacqueline.ellis@example.com",
+      "dob": "2001-03-24T00:00:00Z",
+      "gpa": 3.9
+    },
+    {
+      "id": 221512,
+      "name": "Pamela Richardson",
+      "email": "pamela.richardson@example.com",
+      "dob": "2001-06-29T00:00:00Z",
+      "gpa": 3.89
+    },
+    {
+      "id": 221567,
+      "name": "Christina Grant",
+      "email": "christina.grant@example.com",
+      "dob": "2001-06-27T00:00:00Z",
+      "gpa": 3.89
+    }
+]

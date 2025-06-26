@@ -1,0 +1,6 @@
+# Environment variables
+.env
+
+# Executables
+sms.exe
+sms.exe~

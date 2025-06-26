@@ -1,0 +1,294 @@
+basePath: /api
+definitions:
+  model.CreateStudentRequest:
+    properties:
+      dob:
+        example: "2004-10-10T00:00:00Z"
+        type: string
+      email:
+        example: hongphucle1010@gmail.com
+        type: string
+      gpa:
+        example: 4
+        type: number
+      name:
+        example: Le Hong Phuc
+        type: string
+    required:
+    - dob
+    - email
+    - gpa
+    - name
+    type: object
+  model.PaginatedResponse-model_Student:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.Student'
+        type: array
+      page:
+        type: integer
+      page_size:
+        type: integer
+      total:
+        type: integer
+    type: object
+  model.Student:
+    properties:
+      dob:
+        example: "2004-10-10T00:00:00Z"
+        type: string
+      email:
+        example: hongphucle1010@gmail.com
+        type: string
+      gpa:
+        example: 4
+        type: number
+      id:
+        example: 220000
+        type: integer
+      name:
+        example: Le Hong Phuc
+        type: string
+    type: object
+  response.ErrorResponse:
+    properties:
+      code:
+        type: integer
+      details:
+        type: string
+      message:
+        type: string
+    type: object
+  response.SuccessResponse-any:
+    properties:
+      data: {}
+      message:
+        type: string
+    type: object
+  response.SuccessResponse-model_PaginatedResponse-model_Student:
+    properties:
+      data:
+        $ref: '#/definitions/model.PaginatedResponse-model_Student'
+      message:
+        type: string
+    type: object
+  response.SuccessResponse-model_Student:
+    properties:
+      data:
+        $ref: '#/definitions/model.Student'
+      message:
+        type: string
+    type: object
+info:
+  contact:
+    email: hongphucle1010@gmail.com
+    name: HCMUT Team tại FPT Software HCM
+  description: Tài liệu API của hệ thống quản lý sinh viên
+  termsOfService: http://swagger.io/terms/
+  title: Swagger UI Hệ thống quản lý sinh viên
+  version: "1.0"
+paths:
+  /ping/:
+    get:
+      description: Ping to get pong
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.SuccessResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Health check
+      tags:
+      - ping
+  /students/:
+    get:
+      description: Get all students with optional filtering, sorting, and pagination
+      parameters:
+      - description: Filter by name
+        in: query
+        name: name
+        type: string
+      - description: Filter by email
+        in: query
+        name: email
+        type: string
+      - description: Minimum GPA
+        in: query
+        name: min_gpa
+        type: number
+      - description: Maximum GPA
+        in: query
+        name: max_gpa
+        type: number
+      - description: Sort by field (name, gpa)
+        in: query
+        name: sort_by
+        type: string
+      - description: Sort order (asc, desc)
+        in: query
+        name: sort_order
+        type: string
+      - description: Page number (starts from 0)
+        in: query
+        name: page
+        type: integer
+      - description: Page size
+        in: query
+        name: page_size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.SuccessResponse-model_PaginatedResponse-model_Student'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Get all students
+      tags:
+      - students
+    post:
+      consumes:
+      - application/json
+      description: Add a new student
+      parameters:
+      - description: Student to add
+        in: body
+        name: student
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateStudentRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/response.SuccessResponse-model_Student'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Create a new student
+      tags:
+      - students
+  /students/{id}:
+    delete:
+      description: Delete a student by ID
+      parameters:
+      - description: Student ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Delete a student
+      tags:
+      - students
+    get:
+      description: Get a student by their ID
+      parameters:
+      - description: Student ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.SuccessResponse-model_Student'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Get student by ID
+      tags:
+      - students
+    put:
+      consumes:
+      - application/json
+      description: Update a student by ID
+      parameters:
+      - description: Student ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Student data to update
+        in: body
+        name: student
+        required: true
+        schema:
+          $ref: '#/definitions/model.Student'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.SuccessResponse-model_Student'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Update a student
+      tags:
+      - students
+  /test/:
+    get:
+      description: This API is just used for experimenting
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.SuccessResponse-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Experimenting API
+      tags:
+      - test
+swagger: "2.0"
