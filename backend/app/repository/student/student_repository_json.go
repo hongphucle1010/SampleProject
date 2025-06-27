@@ -14,6 +14,7 @@ func NewJsonStudentRepository() IStudentRepository {
 	return &JsonStudentRepository{}
 }
 
+// GetStudents implements IStudentRepository.
 func (r *JsonStudentRepository) GetStudents() ([]model.Student, error) {
 	students, err := utils.ReadJsonFile[model.Student](viper.GetString("database.path"))
 	if err != nil {
@@ -23,6 +24,7 @@ func (r *JsonStudentRepository) GetStudents() ([]model.Student, error) {
 	return students, nil
 }
 
+// AddStudent implements IStudentRepository.
 func (r *JsonStudentRepository) AddStudent(req model.CreateStudentRequest) (model.Student, error) {
 	students, err := utils.ReadJsonFile[model.Student](viper.GetString("database.path"))
 	if err != nil {
@@ -39,6 +41,7 @@ func (r *JsonStudentRepository) AddStudent(req model.CreateStudentRequest) (mode
 	return student, utils.WriteJsonFile(viper.GetString("database.path"), students)
 }
 
+// UpdateStudent implements IStudentRepository.
 func (r *JsonStudentRepository) UpdateStudent(student model.Student) (model.Student, error) {
 	students, err := utils.ReadJsonFile[model.Student](viper.GetString("database.path"))
 	if err != nil {
@@ -58,6 +61,7 @@ func (r *JsonStudentRepository) UpdateStudent(student model.Student) (model.Stud
 	return student, utils.WriteJsonFile(viper.GetString("database.path"), students)
 }
 
+// DeleteStudent implements IStudentRepository.
 func (r *JsonStudentRepository) DeleteStudent(id int) error {
 	students, err := utils.ReadJsonFile[model.Student](viper.GetString("database.path"))
 	if err != nil {
@@ -78,6 +82,7 @@ func (r *JsonStudentRepository) DeleteStudent(id int) error {
 	return utils.WriteJsonFile(viper.GetString("database.path"), newStudents)
 }
 
+// GetStudentByID implements IStudentRepository.
 func (r *JsonStudentRepository) GetStudentByID(id int) (model.Student, error) {
 	students, err := utils.ReadJsonFile[model.Student](viper.GetString("database.path"))
 	if err != nil {

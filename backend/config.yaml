@@ -2,6 +2,10 @@ server:
   port: 8080
 database:
   type: "mongodb"
-  uri: "mongodb://localhost:27017"  # Can be overridden by environment variable with DATABASE_URI
+  uri: "mongodb://localhost:27017" # Can be overridden by environment variable with DATABASE_URI
   name: "sample"
+  mongodb:
+    collections:
+      students: students
+      users: users
   # path: "data/minidata.json"

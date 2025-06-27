@@ -5,13 +5,17 @@ import (
 	"log"
 	"time"
 
+	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"github.com/spf13/viper"
 )
 
 var MongoClient *mongo.Client
 var MongoDatabase *mongo.Database
+var (
+	StudentCollection *mongo.Collection
+	UserCollection    *mongo.Collection
+)
 
 func ConnectMongoDB(uri string) *mongo.Client {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -29,7 +33,14 @@ func ConnectMongoDB(uri string) *mongo.Client {
 	}
 
 	log.Println("MongoDB connected successfully")
+	initDatabase(client)
+	return client
+}
+
+func initDatabase(client *mongo.Client) {
 	MongoClient = client
 	MongoDatabase = client.Database(viper.GetString("database.name"))
-	return client
+
+	StudentCollection = MongoDatabase.Collection(viper.GetString("database.mongodb.collections.students"))
+	UserCollection = MongoDatabase.Collection(viper.GetString("database.mongodb.collections.users"))
 }
