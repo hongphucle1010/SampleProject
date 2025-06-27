@@ -1,4 +1,4 @@
-package repository
+package student
 
 import (
 	"encoding/json"

@@ -1,4 +1,4 @@
-package repository
+package student
 
 import (
 	"fmt"
@@ -7,16 +7,6 @@ import (
 
 	"github.com/spf13/viper"
 )
-
-type IStudentRepository interface {
-	GetStudents() ([]model.Student, error)
-	AddStudent(req model.CreateStudentRequest) (model.Student, error)
-	UpdateStudent(student model.Student) (model.Student, error)
-	DeleteStudent(id int) error
-	GetStudentByID(id int) (model.Student, error)
-}
-
-type MongoDBStudentRepository struct{}
 
 type JsonStudentRepository struct{}
 

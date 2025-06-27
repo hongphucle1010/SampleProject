@@ -4,6 +4,7 @@ import (
 	"sms/app/config"
 	"sms/app/middleware"
 	"sms/app/routes"
+	"sms/app/utils"
 	_ "sms/docs"
 
 	"github.com/kataras/iris/v12"
@@ -23,13 +24,16 @@ func main() {
 	// Initialize config
 	config.InitConfig()
 
+	// Initialize MongoDB
+	utils.ConnectMongoDB(viper.GetString("database.uri"))
+
 	// Initialize Iris
 	app := iris.New()
-	app.Use(middleware.Recover)				// Recover from panics
-	app.Use(middleware.Logger)				// Log requests
-	app.Use(middleware.Cors())				// Handle CORS
+	app.Use(middleware.Recover) // Recover from panics
+	app.Use(middleware.Logger)  // Log requests
+	app.Use(middleware.Cors())  // Handle CORS
 
-	routes.Register(app)					// Register routes	
+	routes.Register(app) // Register routes
 
 	// Start server
 	app.Listen(":" + viper.GetString("server.port"))

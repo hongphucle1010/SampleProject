@@ -2,7 +2,7 @@ package routes
 
 import (
 	"sms/app/controller"
-	"sms/app/repository"
+	"sms/app/repository/student"
 	"sms/app/service"
 
 	"github.com/kataras/iris/v12"
@@ -17,7 +17,7 @@ func Register(app *iris.Application) {
 
 	mvc.New(api.Party("/ping")).Register(service.NewPingService).Handle(new(controller.PingController))
 	mvc.New(api.Party("/students")).Register(
-		repository.NewJsonStudentRepository,
+		student.NewJsonStudentRepository,
 		service.NewStudentService,
 	).Handle(new(controller.StudentController))
 	mvc.New(api.Party("/test")).Register(&service.TestService{}).Handle(new(controller.TestController))

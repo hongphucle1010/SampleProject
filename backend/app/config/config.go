@@ -3,6 +3,8 @@ package config
 import (
 	"fmt"
 	"log"
+	"os"
+	"strings"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/joho/godotenv"
@@ -16,10 +18,16 @@ func InitConfig() {
 		log.Println("No .env file found, continuing without it...")
 	}
 
+	// Load config from config.yaml
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
+
+	// Expand environment variables in config
 	viper.AutomaticEnv()
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	expandEnvVars(viper.AllSettings())
+
 	viper.WatchConfig()
 
 	viper.OnConfigChange(func(e fsnotify.Event) {
@@ -29,5 +37,19 @@ func InitConfig() {
 	err = viper.ReadInConfig()
 	if err != nil {
 		log.Fatalf("Config error: %s", err)
+	}
+}
+
+// Recursive expansion of ${VAR} strings from env
+func expandEnvVars(settings map[string]any) {
+	for key, value := range settings {
+		switch v := value.(type) {
+		case string:
+			if strings.Contains(v, "${") {
+				settings[key] = os.ExpandEnv(v)
+			}
+		case map[string]any:
+			expandEnvVars(v)
+		}
 	}
 }

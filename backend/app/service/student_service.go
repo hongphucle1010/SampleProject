@@ -2,7 +2,7 @@ package service
 
 import (
 	"sms/app/model"
-	"sms/app/repository"
+	"sms/app/repository/student"
 	"sort"
 )
 
@@ -26,10 +26,10 @@ type IStudentService interface {
 }
 
 type StudentService struct {
-	repository repository.IStudentRepository
+	repository student.IStudentRepository
 }
 
-func NewStudentService(repository repository.IStudentRepository) IStudentService {
+func NewStudentService(repository student.IStudentRepository) IStudentService {
 	return &StudentService{repository}
 }
 

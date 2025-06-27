@@ -1,5 +1,6 @@
 server:
   port: 8080
 database:
-  type: "json"
-  path: "data/minidata.json"
+  type: "mongodb"
+  uri: "mongodb://localhost:27017"  # Can be overridden by environment variable with DATABASE_URI
+  # path: "data/minidata.json"
