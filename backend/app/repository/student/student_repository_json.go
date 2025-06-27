@@ -2,8 +2,8 @@ package student
 
 import (
 	"fmt"
-	"sms/app/model"
-	"sms/app/utils"
+	"sample/app/model"
+	"sample/app/utils"
 
 	"github.com/spf13/viper"
 )

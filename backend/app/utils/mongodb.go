@@ -7,9 +7,11 @@ import (
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"github.com/spf13/viper"
 )
 
 var MongoClient *mongo.Client
+var MongoDatabase *mongo.Database
 
 func ConnectMongoDB(uri string) *mongo.Client {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -28,5 +30,6 @@ func ConnectMongoDB(uri string) *mongo.Client {
 
 	log.Println("MongoDB connected successfully")
 	MongoClient = client
+	MongoDatabase = client.Database(viper.GetString("database.name"))
 	return client
 }

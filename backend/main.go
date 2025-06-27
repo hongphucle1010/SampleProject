@@ -1,11 +1,11 @@
 package main
 
 import (
-	"sms/app/config"
-	"sms/app/middleware"
-	"sms/app/routes"
-	"sms/app/utils"
-	_ "sms/docs"
+	"sample/app/config"
+	"sample/app/middleware"
+	"sample/app/routes"
+	"sample/app/utils"
+	_ "sample/docs"
 
 	"github.com/kataras/iris/v12"
 	"github.com/spf13/viper"

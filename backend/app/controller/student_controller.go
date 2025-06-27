@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"sms/app/model"
-	"sms/app/service"
-	"sms/pkg/response"
+	"sample/app/model"
+	"sample/app/service"
+	"sample/pkg/response"
 	"strconv"
 
 	"github.com/kataras/iris/v12"

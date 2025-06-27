@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"sms/app/controller"
-	"sms/app/repository/student"
-	"sms/app/service"
+	"sample/app/controller"
+	"sample/app/repository/student"
+	"sample/app/service"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/mvc"

@@ -1,8 +1,8 @@
 package service
 
 import (
-	"sms/app/model"
-	"sms/app/repository/student"
+	"sample/app/model"
+	"sample/app/repository/student"
 	"sort"
 )
 

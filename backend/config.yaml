@@ -3,4 +3,5 @@ server:
 database:
   type: "mongodb"
   uri: "mongodb://localhost:27017"  # Can be overridden by environment variable with DATABASE_URI
+  name: "sample"
   # path: "data/minidata.json"

@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"sms/app/service"
-	"sms/pkg/response"
+	"sample/app/service"
+	"sample/pkg/response"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/mvc"

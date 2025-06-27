@@ -1,6 +1,6 @@
 package student
 
-import "sms/app/model"
+import "sample/app/model"
 
 type IStudentRepository interface {
 	GetStudents() ([]model.Student, error)

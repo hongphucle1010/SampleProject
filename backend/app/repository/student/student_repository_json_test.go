@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"sms/app/model"
+	"sample/app/model"
 
 	"github.com/stretchr/testify/assert"
 )
